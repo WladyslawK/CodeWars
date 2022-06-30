@@ -20,3 +20,12 @@ function isPangram(string){
     return string.indexOf(x) !== -1;
   });
 }
+
+
+
+
+function isPangram(string){
+  return 'abcdefghijklmnopqrstuvwxyz'
+    .split('')
+    .every((x) => string.toLowerCase().includes(x));
+}
