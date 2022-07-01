@@ -1,5 +1,14 @@
-let n = 12345;
 
+
+
+////////// Corrected
+function digitize(n) {
+        return n.toString().split("").reverse().map(Number);
+      }
+////////////
+
+
+let n = 12345;
 
 function digitize(n) {
   //code here
