@@ -17,3 +17,10 @@ function inArray(array1, array2){
   }
 
   console.log(inArray(a1, a2))
+
+
+const inArray1 = (array1, array2) => {
+    return array1.filter(item => array2.find(word => word.includes(item))).sort();
+}
+
+console.log(inArray1(a1, a2))
