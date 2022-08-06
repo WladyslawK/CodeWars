@@ -124,3 +124,59 @@ usersMapped = [
 
 alert( usersMapped[0].id ) 
 alert( usersMapped[0].fullName ) 
+
+//sort the user by age
+
+const sortByAge = (arr) =>{
+    return arr.sort((a, b) => a.age -b.age)
+    //arr.sort((a, b) => a.age > b.age ? 1 : -1);
+}
+
+let arn = { name: "Arnold", age: 25 };
+let jas = { name: "Jason", age: 30 };
+let adm = { name: "Adam", age: 28 };
+
+let arr3 = [ arn, jas, adm ];
+
+console.log(sortByAge(arr3));
+
+// after sort
+// alert(arr[0].name); // Arnold
+// alert(arr[1].name); // Adam
+// alert(arr[2].name); // Jason
+
+
+
+//Random sort 
+
+arr4 = [1, 2, 3];
+function randomSort(arr) {
+    return arr.sort(() => Math.random() -0.5);
+}
+
+//get average age
+
+const getAverage = (arr) => {
+    return Math.round(arr.reduce((sum, next) => sum + next.age, 0) / arr.length);
+}
+console.log(getAverage(arr3))
+
+//return unique elements of the array
+
+function unique(arr) {
+    let result = [];
+  
+    for (let str of arr) {
+      if (!result.includes(str)) {
+        result.push(str);
+      }
+    }
+  
+    return result;
+  }
+  
+  let strings = ["Hello", "Hello", "world", "world",
+  "Hi", "CapeTown", "world", "Hello", ":-O"
+  ];
+  
+  console.log("Unique: ", unique(strings) ); // Hi CapeTown :-O
