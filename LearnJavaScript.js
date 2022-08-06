@@ -57,3 +57,70 @@ const copySort = (arr) => {
 
 console.log("Sorted Copy Array: ", copySort())
 console.log(arr2)
+
+
+function Calculator(name){
+    this.methods = {
+        "-": (a, b) => a - b,
+        "+": (a, b) => a + b
+    };
+
+    this.calculate = (str) =>{
+        let arr = str.split(" ");
+        let a = +arr[0];
+        let b = +arr[2];
+        let op = arr[1];
+
+        return this.methods[op](a, b)
+    }
+    
+    this.addMethod = (name, func) => {
+        this.methods[name]=func;
+    }
+}
+
+let calc1 = new Calculator("John");
+console.log(calc1.calculate("3 + 7"))
+calc1.addMethod("/", (a, b) => a / b)
+calc1.addMethod("*", (a, b) => a * b)
+calc1.addMethod("**", (a, b) => Math.pow(a,b))
+console.log("6 / 2 = ", calc1.calculate("6 / 2"))
+console.log("6 * 2 = ", calc1.calculate("6 * 2"))
+console.log("2 ^ 3 = ", calc1.calculate("2 ** 3"))
+
+
+//Make the array of names out of the array of the object 
+
+let vasyl = { name: "Vasyl", age: 25 };
+let piotr = { name: "Piotr", age: 30 };
+let michal = { name: "Michał", age: 28 };
+
+let users = [ vasyl, piotr, michal ];
+
+let names = users.map(item => item.name);
+console.log(names)
+alert( names );
+
+
+
+
+
+//make the array with full name and 
+let arni = { name: "Arnold", surname: "Schwarcneger", id: 1 };
+let jason = { name: "Jason", surname: "Statham", id: 2 };
+let adam = { name: "Adam", surname: "Mickiewicz", id: 3 };
+
+let users1 = [ arni, jason, adam ];
+
+let usersMapped = users1.map(item => {return {"id": item.id, "fullName": `${item.name} ${item.surname}`}})
+
+/*
+usersMapped = [
+  { fullName: "Arnold Schwarcneger", id: 1 },
+  { fullName: "Jason Statham", id: 2 },
+  { fullName: "Adam Mickiewicz", id: 3 }
+]
+*/
+
+alert( usersMapped[0].id ) 
+alert( usersMapped[0].fullName ) 
