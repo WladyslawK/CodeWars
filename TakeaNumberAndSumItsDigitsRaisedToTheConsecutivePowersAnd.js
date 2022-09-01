@@ -10,4 +10,4 @@ const sumDigPow = (a, b) => {
       if(num===checkNum) array.push(num) 
     }
     return array
-}
+} 
