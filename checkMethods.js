@@ -40,8 +40,23 @@ const students = [
 const user = {
     name: "Bob",
     age: 23,
-    friends: ["Alex", "Nick", "John"]
+    friends: ["Alex", "Nick", "John"],
+    address: {
+        city: "Rzeszow",
+        street: "3 Maja"
+    }
 }
+
+console.log("-----------")
+
+let shalCopy = Object.assign({}, user)
+shalCopy.address.city = "Gdynia"
+console.log("Shallow copy: ", shalCopy)
+console.log(shalCopy.address.city)
+console.log(user.address.city)
+
+
+console.log("-----------")
 
 //1. Создайте поверхностную копию объекта user
 let copyUser = {...user};
@@ -148,3 +163,57 @@ console.log(newDeepCopyStudents)
 //13. Найдите сумму баллов всех студентов (reduce)
 let scoresSum = newDeepCopyStudents.map(student => student.scores).reduce((a, b) => a + b)
 console.log("13. Sum of all students scores: ", scoresSum)
+
+
+
+// 14. Д.З.:
+// Напишите функцию addFriends, которая принимает параметром массив students
+// и добавляет в каждому студенту свойство "friends",
+// значением которого является массив имён всех остальных студентов из массива students,
+// за исключением собственного имени студента. Т.е. в друзьях у Боба Боба быть не должно.
+
+console.log("Friends", students[0].friends)
+const addFriends = (students) => students.map(student => ({...student, friends: students.map(friend => friend.name).filter(friend => friend !== student.name)}))
+
+ const addFriends2 = (students) =>{
+    
+    for(let j = 0; j < students.length; j++){
+        let friends = []
+        for(let i = 0; i < students.length; i++){ 
+            if(students[i].name !== students[j].name){
+                friends = [...friends, students[i].name]
+            }    
+        }
+        students[j] = {...students[j], friends: friends}
+        friends = []
+    }
+    return students
+ }
+
+//console.log(addFriends(students));
+//console.log(addFriends2(students))
+
+
+// 15. Напишите функцию getBestStudents, которая принимает параметром массив
+// students  и количество лучших студентов, которое надо получить в
+// новом массиве.
+// getBestStudents(students) => [{name: "Nick", age: 20, isMarried: false, scores: 120}]
+// getBestStudents(students, 3)
+// getBestStudents(students, 10)
+
+const getBestStudents = (students, amount) => {
+    return students.map(student => student).sort((a, b) => b.scores - a.scores).slice(0, amount)
+}
+
+
+console.log(getBestStudents(students, 3))
+console.log(students)
+
+
+
+
+
+
+
+
+
