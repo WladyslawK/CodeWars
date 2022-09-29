@@ -97,4 +97,130 @@ console.log("setUpperCase: ", setUpperCase("Всем студентам инку
 // возвращает false. Проверка проводится без учёта регистра и без учётом
 // повторяющихся символов.
 
+const isIncludesAbsolute = (expression, includeVal) => {
+    const stringLowerCase = expression.toLowerCase()
+    const subStringLowerCase = includeVal.toLowerCase()
+    let result = true
+
+    for(let i = 0; i < subStringLowerCase.length; i++){
+        if(!stringLowerCase.includes(subStringLowerCase[i])){
+            result = false
+        }
+    }
+
+    return result
+}
+
+
+const isIncludes = (expression, includeVal) => {
+    const expr = expression.toLowerCase()
+    const lookupVal = includeVal.toLowerCase()
+    const arrLookup = []
+
+    for(let i = 0; i < lookupVal.length; i++){
+        if(expr.includes(lookupVal[i])) arrLookup.push(lookupVal[i])
+    }
+
+    return arrLookup.join("") === lookupVal ? true : false
+}
+
+const isIncludes2 = (expression, includeVal) => {
+    const expr = expression.toLowerCase()
+    const lookupVal = includeVal.toLowerCase()
+    const arrLookup = []
+
+    for(let i = 0; i < lookupVal.length; i++){
+        if(expr.includes(lookupVal[i]) && !arrLookup.includes(lookupVal[i])) arrLookup.push(lookupVal[i])
+    }
+    
+    return arrLookup.join("") === lookupVal ? true : false
+}
+
+
+const isIncludes3 = (expression, includeVal) => {
+    let asociative = {}
+    const expr = expression.toLowerCase()
+    const incl = includeVal.toLowerCase()
+
+    for(let i = 0; i < expr.length; i++){
+        if(asociative[expr[i]] !== undefined){
+            asociative[expr[i]] += 1
+        }else{
+            asociative[expr[i]] = 1
+        }
+    }
+
+    for(let i = 0; i < incl.length; i++){
+        if(asociative[incl[i]] > 0) asociative[incl[i]] -= 1
+        else return false
+    }
+    //console.log("associative: ", asociative)
+    return true
+}
+
+console.log("isIncludes: ", isIncludes3("Incubator", "Cut"))
+console.log("=============")
+
+
+console.log("isIncludes: ", isIncludesAbsolute("Incubator", "Cut"))
+console.log("isIncludes: ", isIncludesAbsolute("Incubator", "table"))
+console.log("isIncludes: ", isIncludesAbsolute("Incubator", "inbba"))
+console.log("isIncludes: ", isIncludesAbsolute("Incubator", "inba"))
+console.log("isIncludes: ", isIncludesAbsolute("Incubator", "Incubatorrr"))
+
+console.log("-----------------")
+
+
+console.log("isIncludes: ", isIncludes("Incubator", "Cut"))
+console.log("isIncludes: ", isIncludes("Incubator", "table"))
+console.log("isIncludes: ", isIncludes("Incubator", "inbba"))
+console.log("isIncludes: ", isIncludes("Incubator", "inba"))
+console.log("isIncludes: ", isIncludes("Incubator", "Incubatorrr"))
+
+console.log("---------------------------------------")
+
+
+console.log("isIncludes: ", isIncludes2("Incubator", "Cut"))
+console.log("isIncludes: ", isIncludes2("Incubator", "table"))
+console.log("isIncludes: ", isIncludes2("Incubator", "inbba"))
+console.log("isIncludes: ", isIncludes2("Incubator", "inba"))
+console.log("isIncludes: ", isIncludes2("Incubator", "Incubatorrr"))
+
+
+console.log("---------------------------------------")
+
+
+console.log("isIncludes: ", isIncludes3("Incubator", "Cut"))
+console.log("isIncludes: ", isIncludes3("Incubator", "table"))
+console.log("isIncludes: ", isIncludes3("Incubator", "inbba"))
+console.log("isIncludes: ", isIncludes3("Incubator", "inba"))
+console.log("isIncludes: ", isIncludes3("Incubator", "Incubatorrr"))
+
+
+// isIncludes("Incubator", "Cut") => true
+// isIncludes("Incubator", "table") => false
+// isIncludes("Incubator", "inbba") => true
+// isIncludes("Incubator", "inba") => true
+// isIncludes("Incubator", "Incubatorrr")=> true
+
+
+
+const isIncludesA = (str, subStr) => {
+    return subStr.toLowerCase().split('').map(el => str.toLowerCase().indexOf(el, 0) >= 0 ? true : false).every(el => el)
+}
+
+const isIncludesB = (str, subStr) => {
+
+    let uniqueItems1 = [...new Set(str.toLowerCase())]
+    let uniqueItems2 = [...new Set(subStr.toLowerCase())]
+    let uniqueItemslenUn =  [...uniqueItems1,...uniqueItems2]
+    let uniqueItemslen = [...uniqueItems1,...uniqueItems2].length
+    let uniqueItems3 = [...new Set(uniqueItemslenUn)]
+    return (uniqueItems3.length + uniqueItems2.length) == uniqueItemslen
+
+    }
+
+
+
+
 
