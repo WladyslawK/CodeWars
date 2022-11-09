@@ -17,3 +17,14 @@ function isHappy(n) {
     return false
 
   }
+
+ const isHappy2 = (n) => {
+    let arr = []
+    while (n !== 1 && arr.indexOf(n) === -1) {
+      arr.push(n);
+      n = n.toString().split('').reduce((p, n) => p + Math.pow(Number(n), 2), 0);
+    }
+    return n === 1;
+  }
+
+  console.log(isHappy2(7))
