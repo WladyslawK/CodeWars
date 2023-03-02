@@ -1,0 +1,1 @@
+const cubeChecker = (volume, side) => volume <= 0 || side <= 0 ? false : Number.isInteger(Math.sqrt(volume / side)) 
